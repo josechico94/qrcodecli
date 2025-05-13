@@ -24,32 +24,33 @@
 
   <div id="qrcode"></div>
 
-  <script>
-    const form = document.getElementById('clienteForm');
-    const qrContainer = document.getElementById('qrcode');
+<script>
+  const form = document.getElementById('clienteForm');
+  const qrContainer = document.getElementById('qrcode');
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      qrContainer.innerHTML = '';
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    qrContainer.innerHTML = '';
 
-      const nombre = document.getElementById('nombre').value;
-      const email = document.getElementById('email').value;
-      const telefono = document.getElementById('telefono').value;
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const telefono = document.getElementById('telefono').value;
 
-      
-      const datosCodificados = encodeURIComponent(JSON.stringify(datos));
-      const datosCliente = `https://josechico94.github.io/qrcodecli/mostrar.html?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono)}`;
+    // URL base de tu proyecto
+    const baseUrl = 'https://josechico94.github.io/qrcodecli/mostrar.html';
 
-      const urlQR = `${location.origin}/mostrar.html?datos=${datosCodificados}`;
-   
+    // Armamos la URL con parámetros
+    const urlQR = `${baseUrl}?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono)}`;
 
-      new QRCode(qrContainer, {
-        text: urlQR,
-        width: 200,
-        height: 200
-      });
+    // Generamos el QR con esa URL
+    new QRCode(qrContainer, {
+      text: urlQR,
+      width: 200,
+      height: 200
     });
-  </script>
+  });
+</script>
+
 
 </body>
 </html>
