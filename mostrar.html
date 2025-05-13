@@ -5,35 +5,41 @@
   <title>Datos del Cliente</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      font-family: sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      background: #f4f4f4;
     }
     .card {
       background: white;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card h2 {
+      margin-bottom: 1rem;
+    }
+    .card p {
+      margin: 0.5rem 0;
     }
   </style>
 </head>
 <body>
-
-  <div class="card" id="card">
-    <h2 id="nombre"></h2>
+  <div class="card" id="datosCliente">
+    <h2>Datos del Cliente</h2>
+    <p id="nombre"></p>
     <p id="email"></p>
     <p id="telefono"></p>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    document.getElementById('nombre').textContent = `Nombre: ${params.get('nombre')}`;
-    document.getElementById('email').textContent = `Email: ${params.get('email')}`;
-    document.getElementById('telefono').textContent = `Teléfono: ${params.get('telefono')}`;
+    document.getElementById('nombre').textContent = "Nombre: " + params.get('nombre');
+    document.getElementById('email').textContent = "Email: " + params.get('email');
+    document.getElementById('telefono').textContent = "Teléfono: " + params.get('telefono');
   </script>
-
 </body>
 </html>
