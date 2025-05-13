@@ -36,10 +36,12 @@
       const email = document.getElementById('email').value;
       const telefono = document.getElementById('telefono').value;
 
-      const datos = { nombre, email, telefono };
+      
       const datosCodificados = encodeURIComponent(JSON.stringify(datos));
+      const datosCliente = `https://josechico94.github.io/qrcodecli/mostrar.html?nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono)}`;
 
       const urlQR = `${location.origin}/mostrar.html?datos=${datosCodificados}`;
+   
 
       new QRCode(qrContainer, {
         text: urlQR,
