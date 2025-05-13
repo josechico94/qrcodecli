@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de QR para Clientes</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #eef2f7; text-align: center; }
+    form { background: white; padding: 2rem; border-radius: 10px; max-width: 500px; margin: auto; }
+    input, button { width: 100%; margin: 0.5rem 0; padding: 10px; font-size: 1rem; }
+    #qrcode { margin-top: 2rem; }
+  </style>
+</head>
+<body>
+
+  <h2>Generador de QR para Clientes</h2>
+
+  <form id="clienteForm">
+    <input type="text" id="nombre" placeholder="Nombre completo" required>
+    <input type="email" id="email" placeholder="Correo electrónico" required>
+    <input type="text" id="telefono" placeholder="Teléfono" required>
+    <button type="submit">Generar Código QR</button>
+  </form>
+
+  <div id="qrcode"></div>
+
+  <script>
+    const form = document.getElementById('clienteForm');
+    const qrContainer = document.getElementById('qrcode');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      qrContainer.innerHTML = '';
+
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const telefono = document.getElementById('telefono').value;
+
+      const datos = { nombre, email, telefono };
+      const datosCodificados = encodeURIComponent(JSON.stringify(datos));
+
+      const urlQR = `${location.origin}/mostrar.html?datos=${datosCodificados}`;
+
+      new QRCode(qrContainer, {
+        text: urlQR,
+        width: 200,
+        height: 200
+      });
+    });
+  </script>
+
+</body>
+</html>
